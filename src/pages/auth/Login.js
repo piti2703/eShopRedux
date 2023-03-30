@@ -14,7 +14,7 @@ const Login = () => {
         </div>
         <Card>
             <div className={styles.form}>
-                <h2 s>Login</h2>
+                <h2>Login</h2>
                 <form>
                     <input type='text' placeholder='Email'
                     required />
