@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 import styles from './auth.module.scss'
 import registerImg from '../../assets/register.png'
@@ -48,7 +47,6 @@ const registerUser = (e) => {
 
 return (
     <>
-        <ToastContainer />
         {isLoading && <Loader />}
         <section className={`container ${styles.auth}`}>
             <Card>
