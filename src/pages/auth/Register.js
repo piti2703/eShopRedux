@@ -51,7 +51,7 @@ return (
         <section className={`container ${styles.auth}`}>
             <Card>
                 <div className={styles.form}>
-                    <h2>Register</h2>
+                    <h2>Register blb bla</h2>
                     <form onSubmit={registerUser}>
                         <input type='text' placeholder='Email'
                         required value={email} onChange={ e => setEmail(e.target.value)} />
