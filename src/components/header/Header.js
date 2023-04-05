@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { SET_ACTIVE_USER } from "../../redux/slice/authSlice";
+import { REMOVE_ACTIVE_USER } from "../../redux/slice/authSlice";
 
 const logo = (
   <div className={styles.logo}>
@@ -43,20 +44,28 @@ const Header = () => {
       if (user) {
         // const uid = user.uid;
         // console.log(user.displayName);
-        setDisplayName(user.displayName)
+        if(user.displayName == null) {
+          const u1 = user.email.substring(0, user.email.indexOf('@'))
+          const uName = u1.charAt(0).toUpperCase() + u1.slice(1)
+          setDisplayName(uName)
+        }
+        else {
+          setDisplayName(user.displayName)
+        }
 
         dispatch(SET_ACTIVE_USER({
           email: user.email,
-          userName: user.displayName,
+          userName: user.displayName ? user.displayName : displayName,
           userID: user.uid,
         }))
 
       } else {
         setDisplayName('')
+        dispatch(REMOVE_ACTIVE_USER())
       }
     });
     
-  }, [])
+  }, [displayName, dispatch])
 
 
 
@@ -104,7 +113,7 @@ const Header = () => {
           <div className={styles['header-right']} onClick={hideMenuHandler}>
             <span className={styles.links}>
               <NavLink to='/login' className={activeLink}>Login</NavLink>
-              <a href="#">
+              <a href="#home">
                 <FaUserCircle size={16} />
                 Hi, {displayName}
               </a>
